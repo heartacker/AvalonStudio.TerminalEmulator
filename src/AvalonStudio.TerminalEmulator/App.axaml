@@ -1,0 +1,16 @@
+<Application
+    x:Class="AvalonStudio.TerminalEmulator.App"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:AvalonStudio.TerminalEmulator"
+    xmlns:vt="VtNetCore"
+    RequestedThemeVariant="Default"
+    >
+    <Application.DataTemplates>
+        <local:ViewLocator />
+    </Application.DataTemplates>
+    <Application.Styles>
+        <FluentTheme />
+        <vt:DefaultTheme />
+    </Application.Styles>
+</Application>

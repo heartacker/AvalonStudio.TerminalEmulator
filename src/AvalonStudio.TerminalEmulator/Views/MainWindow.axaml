@@ -1,0 +1,26 @@
+<Window
+    x:Class="AvalonStudio.TerminalEmulator.Views.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:vm="using:AvalonStudio.TerminalEmulator.ViewModels"
+    xmlns:vt100="VtNetCore"
+    Title="AvalonStudio.TerminalEmulator"
+    MinWidth="800"
+    MinHeight="600"
+    Background="Black"
+    Icon="/Assets/avalonia-logo.ico"
+    >
+    <Panel>
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Terminal is not connected."
+            />
+        <vt100:VirtualTerminalControl
+            Connection="{Binding Connection}"
+            Focusable="True"
+            FontFamily="Consolas, Ubuntu, Monaco"
+            IsVisible="{Binding TerminalVisible}"
+            />
+    </Panel>
+</Window>

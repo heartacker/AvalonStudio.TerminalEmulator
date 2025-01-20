@@ -16,7 +16,9 @@ namespace AvalonStudio.TerminalEmulator.ViewModels
         private IConnection _connection;
         private bool _terminalVisible;
         private object _createLock = new object();
-        static IPsuedoTerminalProvider s_provider = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? new Win32PsuedoTerminalProvider() : new UnixPsuedoTerminalProvider() as IPsuedoTerminalProvider;
+        static IPsuedoTerminalProvider s_provider = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
+            new Win32PsuedoTerminalProvider() :
+            new UnixPsuedoTerminalProvider() as IPsuedoTerminalProvider;
 
         public TerminalViewModel()
         {
@@ -40,12 +42,13 @@ namespace AvalonStudio.TerminalEmulator.ViewModels
 
                 var args = new List<string>();
 
-                if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                 {
                     args.Add("-l");
                 }
 
-                var shellExecutable = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? Environment.ExpandEnvironmentVariables("%SystemRoot%\\system32\\WindowsPowerShell\\v1.0\\powershell.exe") : "/bin/bash";
+                var shellExecutable = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
+                    Environment.ExpandEnvironmentVariables("%SystemRoot%\\system32\\WindowsPowerShell\\v1.0\\powershell.exe") : "/bin/bash";
 
                 if (shellExecutable != null)
                 {

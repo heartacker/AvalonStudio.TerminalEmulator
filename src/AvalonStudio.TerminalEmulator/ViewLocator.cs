@@ -5,21 +5,20 @@ using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using AvalonStudio.TerminalEmulator.ViewModels;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AvalonStudio.TerminalEmulator
 {
     public class ViewLocator : IDataTemplate
     {
-        public bool SupportsRecycling => false;
-
-        public IControl Build(object data)
+        public Control? Build(object? param)
         {
-            var name = data.GetType().FullName.Replace("ViewModel", "View");
-            var type = Type.GetType(name);
-
+            if (param is null) return null;
+            var name = param.GetType().Name!.Replace("ViewModel", "");
+            var type = Type.GetType("VariableBox.Demo.Pages." + name);
             if (type != null)
             {
-                return (Control)Activator.CreateInstance(type);
+                return (Control)Activator.CreateInstance(type)!;
             }
             else
             {
@@ -27,9 +26,9 @@ namespace AvalonStudio.TerminalEmulator
             }
         }
 
-        public bool Match(object data)
+        public bool Match(object? data)
         {
-            return data is ViewModelBase;
+            return true;
         }
     }
 }
